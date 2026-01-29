@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   n8n:
-    image: docker.n8n.io/n8nio/n8n:latest
+    build: .
     container_name: n8n
     restart: unless-stopped
 
@@ -11,17 +11,14 @@ services:
       - N8N_PROTOCOL=https
       - N8N_PORT=5678
       - WEBHOOK_URL=https://automation.instloo.in
-      - DB_SQLITE_POOL_SIZE=5
 
-      # Execute Command
       - EXECUTIONS_PROCESS=main
       - N8N_EXECUTE_COMMAND_ENABLED=true
-      - NODES_EXCLUDE=[]
       - N8N_ENABLE_UNSAFE_NODES=true
+      - NODES_EXCLUDE=[]
 
     volumes:
       - n8n_data:/home/node/.n8n
-      #- ./media:/media
       - /opt/n8n/media:/media
 
     networks:
@@ -34,9 +31,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    # configs:
-    #   - source: caddyfile_n8n
-    #     target: /etc/caddy/Caddyfile
     volumes:
       - /opt/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
@@ -48,10 +42,6 @@ volumes:
   n8n_data:
   caddy_data:
   caddy_config:
-
-configs:
-  caddyfile_n8n:
-    external: true
 
 networks:
   web:
