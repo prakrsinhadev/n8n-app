@@ -3,24 +3,29 @@ services:
     image: docker.n8n.io/n8nio/n8n:latest
     container_name: n8n
     restart: unless-stopped
+
     environment:
       - N8N_HOST=automation.instloo.in
       - N8N_PROTOCOL=https
       - N8N_PORT=5678
       - WEBHOOK_URL=https://automation.instloo.in
       - DB_SQLITE_POOL_SIZE=5
+
       # Execute Command
       - EXECUTIONS_PROCESS=main
       - N8N_EXECUTE_COMMAND_ENABLED=true
       - N8N_ENABLE_UNSAFE_NODES=true
+
     volumes:
       - n8n_data:/home/node/.n8n
-      #- /opt/n8n/media:/media  
       - ./media:/media
+
     networks:
       - web
+
 volumes:
   n8n_data:
+
 networks:
   web:
     driver: bridge
