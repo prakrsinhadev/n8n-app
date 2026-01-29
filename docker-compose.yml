@@ -15,9 +15,9 @@ services:
       # REQUIRED FOR EXECUTE COMMAND
       - EXECUTIONS_PROCESS=main
       - N8N_EXECUTE_COMMAND_ENABLED=true
+      - NODES_EXCLUDE=[]
       - N8N_ENABLE_UNSAFE_NODES=true
       #- N8N_BLOCK_ENV_ACCESS=false
-      
     volumes:
       - n8n_data:/home/node/.n8n
       #- /usr/bin/ffmpeg:/usr/bin/ffmpeg
