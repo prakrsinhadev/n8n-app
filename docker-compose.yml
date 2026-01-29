@@ -9,15 +9,15 @@ services:
       - N8N_PORT=5678
       - WEBHOOK_URL=https://automation.instloo.in
       - DB_SQLITE_POOL_SIZE=5
-
       # Execute Command
       - EXECUTIONS_PROCESS=main
       - N8N_EXECUTE_COMMAND_ENABLED=true
       - N8N_ENABLE_UNSAFE_NODES=true
-
     volumes:
       - n8n_data:/home/node/.n8n
-      - /opt/n8n/media:/media  
-
+      #- /opt/n8n/media:/media  
+      - ./media:/media
     networks:
       - web
+volumes:
+  n8n_data:
