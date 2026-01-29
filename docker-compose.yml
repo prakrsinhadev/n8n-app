@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  n8n:
+    build: .
+    container_name: n8n_ffmpeg
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=0.0.0.0
+      - N8N_PROTOCOL=http
+      - N8N_PORT=5678
+      - N8N_SECURE_COOKIE=false
+    volumes:
+      - n8n_ffmpeg_data:/home/node/.n8n
+      - ./media:/media
+
+volumes:
+  n8n_ffmpeg_data:
