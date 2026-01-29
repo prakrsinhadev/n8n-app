@@ -21,3 +21,6 @@ services:
       - web
 volumes:
   n8n_data:
+networks:
+  web:
+    driver: bridge
