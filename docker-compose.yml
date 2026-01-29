@@ -11,11 +11,9 @@ services:
       - N8N_PROTOCOL=https
       - N8N_PORT=5678
       - WEBHOOK_URL=https://automation.instloo.in
-
-      # Performance
       - DB_SQLITE_POOL_SIZE=5
 
-      # REQUIRED for Execute Command
+      # Execute Command
       - EXECUTIONS_PROCESS=main
       - N8N_EXECUTE_COMMAND_ENABLED=true
       - N8N_ENABLE_UNSAFE_NODES=true
@@ -36,8 +34,11 @@ services:
       - "80:80"
       - "443:443"
 
+    configs:
+      - source: caddyfile_n8n
+        target: /etc/caddy/Caddyfile
+
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
 
@@ -48,6 +49,10 @@ volumes:
   n8n_data:
   caddy_data:
   caddy_config:
+
+configs:
+  caddyfile_n8n:
+    external: true
 
 networks:
   web:
