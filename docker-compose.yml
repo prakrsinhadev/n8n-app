@@ -20,7 +20,8 @@ services:
 
     volumes:
       - n8n_data:/home/node/.n8n
-      - ./media:/media
+      #- ./media:/media
+      - /opt/n8n/media:/media
 
     networks:
       - web
