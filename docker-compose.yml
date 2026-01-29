@@ -17,6 +17,7 @@ services:
       # REQUIRED for Execute Command
       - EXECUTIONS_PROCESS=main
       - N8N_EXECUTE_COMMAND_ENABLED=true
+      - NODES_EXCLUDE=[]
       - N8N_ENABLE_UNSAFE_NODES=true
 
     volumes:
