@@ -20,6 +20,8 @@ services:
       #- N8N_BLOCK_ENV_ACCESS=false
     volumes:
       - n8n_data:/home/node/.n8n
+      # SHARED MEDIA (READ/WRITE)
+      - /opt/n8n/media:/media
       #- /usr/bin/ffmpeg:/usr/bin/ffmpeg
       #- /usr/bin/ffprobe:/usr/bin/ffprobe
 
