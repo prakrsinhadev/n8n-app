@@ -24,25 +24,9 @@ services:
     networks:
       - web
 
-  caddy:
-    image: caddy:latest
-    container_name: caddy
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /opt/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-    networks:
-      - web
-
 volumes:
   n8n_data:
-  caddy_data:
-  caddy_config:
 
 networks:
   web:
-    driver: bridge
+    external: true
