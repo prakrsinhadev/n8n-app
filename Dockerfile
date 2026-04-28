@@ -1,17 +1,11 @@
 FROM n8nio/n8n:latest
 
 USER root
-RUN apk update && apk add --no-cache ffmpeg
-USER node
 
-FROM n8nio/n8n:latest
+# Install ffmpeg using Debian's package manager (apt)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
 
-USER root
-
-# Install ffmpeg and common utils
-RUN apk update && \
-    apk add --no-cache ffmpeg && \
-    apk cache clean
-
-# Switch back to node user (important for security)
+# Switch back to the node user for security
 USER node
