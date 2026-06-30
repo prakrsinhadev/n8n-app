@@ -16,6 +16,8 @@ services:
       - N8N_EXECUTE_COMMAND_ENABLED=true
       - N8N_ENABLE_UNSAFE_NODES=true
       - NODES_EXCLUDE=[]
+      - N8N_RESTRICT_FILE_ACCESS_TO=/media
+      - N8N_BLOCK_FILE_ACCESS_TO_N8N_FILES=true
 
     volumes:
       - n8n_data:/home/node/.n8n
